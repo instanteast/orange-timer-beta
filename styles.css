@@ -1,0 +1,424 @@
+/* ===== 기본 바디 스타일 ===== */
+body {
+  margin: 0;
+  font-family: 'Nanum Gothic', sans-serif;
+  background: #fffbe6;
+  color: #333;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 다크모드 바디 스타일 */
+body.dark-mode {
+  background: #111;
+  color: #f0f0f0;
+}
+
+/* ===== 제목 스타일 ===== */
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4rem;
+  margin: 2rem 0 1rem;
+  font-weight: 2000;
+}
+h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  margin: 1rem 0;
+  font-weight: 2000;
+}
+
+/* ===== 업데이트 표시 스타일 ===== */
+.version-info {
+  position: fixed;
+  top: 5px;
+  left: 10px;
+  font-size: 12px;
+  color: #888;
+  font-family: 'Nanum Gothic', sans-serif;
+  opacity: 0.8;
+  z-index: 999;
+}
+
+/* ===== 각 화면 영역 (페이지 전환용 화면) ===== */
+.screen {
+  display: none;
+  padding: 2rem;
+  min-height: 100vh;
+}
+.screen:not(.hidden) {
+  display: block;
+}
+
+/* ===== 전체화면 전환용 버튼 ===== */
+.fullscreen-btn {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0.85;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.fullscreen-btn:hover {
+  opacity: 1;
+  background: #e0e0e0;
+}
+
+
+
+/* ===== 버튼 영역 컨테이너 (오렌지 버튼 감싸는 div) ===== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* ===== 오렌지 버튼 ===== */
+.orange-btn {
+  background-color: orange;
+  border: none;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.orange-btn:hover {
+  transform: scale(1.1);
+}
+.orange-btn.dark-mode {
+  background-color: #444;
+  color: white;
+}
+
+/* ===== 타이머 숫자 크게 표시 ===== */
+.timer-huge {
+  font-size: 25rem;
+  font-weight: bold;
+  margin: 0.1rem 0 2rem;
+  position: relative;
+}
+
+/* ===== 타이머 및 일시정지 버튼 포지션 ===== */
+.timer-container {
+  position: relative;
+}
+.pause-wrapper {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+}
+#pause-btn {
+  font-size: 4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* ===== 진행 바 컨테이너 및 바 스타일 ===== */
+#progress-bar-container {
+  width: 80%;
+  height: 30px;
+  margin: 1rem auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ccc;
+  border: 2px solid #aaa;
+}
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: orange;
+  transition: width 1s linear;
+}
+body.dark-mode #progress-bar-container {
+  background: #111;
+  border: 2px solid #fff;
+}
+body.dark-mode #progress-bar {
+  background: #fff;
+}
+
+/* ===== 공통 타이머/제목 테두리 ===== */
+.timer-decorated, .title-decorated {
+  border: 4px solid #ffa500; /* 기본 테두리 색상 */
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 1rem auto;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+  background: linear-gradient(145deg, #fff6e5, #ffe1b3);
+  width: fit-content;
+  display: inline-block;
+}
+
+/* ===== 다크모드용 ===== */
+body.dark-mode .timer-decorated, 
+body.dark-mode .title-decorated {
+  border-color: #ffaa33;
+  background: linear-gradient(145deg, #222, #333);
+  box-shadow: 0 8px 15px rgba(255, 165, 0, 0.3);
+  color: #fff;
+}
+
+
+/* ===== 상단 왼쪽 뒤로가기 버튼 ===== */
+.back-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transform: rotate(180deg);
+  color: inherit;
+}
+
+/* ===== 상단 오른쪽 다크모드 전환 버튼 ===== */
+.dark-mode-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  color: inherit;
+}
+
+/* ===== 공지사항 영역 (제목 + 내용 레이아웃) ===== */
+.notice-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+/* ===== 공지사항 제목 ===== */
+.notice-header h2 {
+  font-size: 3.2rem;
+  margin: 0.5rem 0 0;
+  font-weight: 1000;
+  text-align: center;
+}
+
+/* ===== 공지사항 레이아웃 박스 (본문 + D-day 박스 정렬용) ===== */
+.notice-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+/* ===== 공지사항 본문 박스 ===== */
+.notice-content {
+  margin: 0.1rem auto 0;
+  padding: 0.1rem 1rem;
+  font-size: 2rem;
+  line-height: 1.6;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  flex: 1;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+}
+.notice-content.dark-mode {
+  background: #222;
+  border-color: #555;
+}
+
+/* ===== 하단 D-day 고정 박스 ===== */
+.dday-box-bottom {
+  position: sticky;
+  bottom: 20px;
+  margin: 2rem auto 0;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem 2rem;  /* 좌우 여백 좀 더 줌 */
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  max-width: 600px;   /* 최대 넓이 제한 */
+  display: flex;      /* flex 컨테이너로 변경 */
+  justify-content: center;  /* 가운데 정렬 */
+  gap: 1rem;          /* 아이템 간 간격 */
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+body.dark-mode .dday-box-bottom {
+  background: #222;
+  color: #fff;
+  border: 2px solid #888;
+}
+
+/* 내부 div들(오늘 날짜, 디데이 박스) 스타일 통일 */
+.dday-box-bottom div {
+  background: inherit; /* 부모 배경 상속 */
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  min-width: 160px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-weight: 700;
+  white-space: pre-line;
+  color: inherit;
+}
+
+
+/* ===== 부가 정보 텍스트 ===== */
+.sub-info {
+  font-size: 3rem;
+  color: #222;
+  font-weight: bold;
+}
+
+/* ===== 타이머 종료 메시지 ===== */
+.timer-end {
+  font-size: 5rem;
+  font-weight: bold;
+  color: red;
+  margin-top: 3rem;
+}
+
+.time-hint {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto 0.5rem;
+  font-size: 1.5rem;
+  color: gray;
+}
+
+/* ===== 숨김 처리 클래스 ===== */
+.hidden {
+  display: none;
+}
+
+/* ===== 숫자 입력창 기본 스타일 ===== */
+input[type="number"] {
+  font-size: 2rem;
+  width: 100px;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+/* ===== 독해 테스트용 숫자 입력창 스타일 ===== */
+#reading-test input[type="number"] {
+  font-size: 3rem;
+  width: 150px;
+  height: 80px;
+  margin: 1rem;
+}
+#reading-test label, #reading-test button {
+  font-size: 2.5rem;
+}
+
+/* ===== 깜빡임 애니메이션 효과 ===== */
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to { visibility: hidden; }
+}
+
+/* ===== 모바일 대응 반응형 스타일 (max-width: 768px 이하) ===== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .orange-btn {
+    width: 100px;
+    height: 100px;
+    font-size: 1rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fullscreen-btn {
+    font-size: 12px;
+    padding: 4px 8px;
+    top: 5px;
+  }
+
+  .dark-mode-btn, .back-btn {
+    font-size: 2rem;
+    top: 0.5rem;
+  }
+
+  .timer-huge {
+    font-size: 10rem;
+  }
+
+  #pause-btn {
+    font-size: 3rem;
+  }
+
+  .notice-content {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+
+  .dday-box-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .dday-box-bottom div {
+    min-width: auto;
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  #reading-test input[type="number"] {
+    width: 100px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  #reading-test label, #reading-test button {
+    font-size: 1.5rem;
+  }
+
+  .timer-end {
+    font-size: 3rem;
+  }
+
+  #progress-bar-container {
+    width: 95%;
+    height: 20px;
+  }
+}
