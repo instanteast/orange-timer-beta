@@ -174,7 +174,7 @@ function updateDates() {
     todayDiv.textContent = `오늘\n${todayStr} (${dayName})`;
   }
 
-  function calcDday(targetDateStr) {
+  function calcDday(targetDateStr) { 
     const target = new Date(targetDateStr);
     target.setHours(0,0,0,0);
     today.setHours(0,0,0,0);
@@ -193,7 +193,78 @@ function updateDates() {
   document.getElementById('dday-2027').innerHTML = `<span class="highlight">27수능</span><br>[D-${calcDday(dday2027Date)}]`;
 
 }
+
+// ====== 오렌지 비 이스터에그 ======
+let titleClickCount = 0;
+let rainActive = false;
+
+function createOrangeRain() {
+  if (rainActive) return;
+  rainActive = true;
+  const rainContainer = document.createElement('div');
+  rainContainer.id = 'orange-rain-container';
+  rainContainer.style.position = 'fixed';
+  rainContainer.style.top = 0;
+  rainContainer.style.left = 0;
+  rainContainer.style.width = '100vw';
+  rainContainer.style.height = '100vh';
+  rainContainer.style.pointerEvents = 'none';
+  rainContainer.style.zIndex = 9999;
+  document.body.appendChild(rainContainer);
+
+  const emojis = ['🍊'];
+  const rainCount = 40;
+
+  for (let i = 0; i < rainCount; i++) {
+    const drop = document.createElement('div');
+    drop.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    drop.style.position = 'absolute';
+    // 랜덤한 가로 위치 (0~98vw)
+    drop.style.left = `${Math.random() * 98}vw`;
+    // 랜덤한 세로 시작 위치 (화면 위쪽 밖)
+    drop.style.top = `-${Math.random() * 20 + 5}vh`;
+    drop.style.fontSize = `${Math.random() * 32 + 32}px`;
+    drop.style.opacity = Math.random() * 0.5 + 0.5;
+    // 랜덤한 애니메이션 지속시간 (2~3초)
+    const duration = 2 + Math.random();
+    // 랜덤한 시작 지연 (0~0.7초)
+    const delay = Math.random() * 0.7;
+    drop.style.transition = `top ${duration}s linear`;
+    drop.style.transitionDelay = `${delay}s`;
+    rainContainer.appendChild(drop);
+
+    setTimeout(() => {
+      drop.style.top = '100vh';
+    }, 50 + delay * 1000);
+
+    // 자동 제거
+    setTimeout(() => {
+      drop.remove();
+      if (i === rainCount - 1) {
+        rainActive = false;
+        if (rainContainer.parentNode) rainContainer.remove();
+      }
+    }, (duration + delay) * 1000 + 500);
+  }
+}
+
+// ================== 다크모드 시작시 변환 ==================
 document.addEventListener("DOMContentLoaded", () => {
   updateDates();
+  if (!document.body.classList.contains("dark-mode")) {
+    toggleDarkMode();
+  }
+
+  // 타이틀 클릭 이벤트 리스너
+  const title = document.querySelector('h1');
+  if (title) {
+    title.addEventListener('click', () => {
+      titleClickCount++;
+      if (titleClickCount === 5) {
+        createOrangeRain();
+        titleClickCount = 0;
+      }
+    });
+  }
 });
 
