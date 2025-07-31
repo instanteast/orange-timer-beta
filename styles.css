@@ -412,6 +412,20 @@ input[type="number"] {
   to { visibility: hidden; }
 }
 
+/* ===== 오렌지 비 오는 효과 ===== */
+#orange-rain-container div {
+  will-change: top;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  animation: orange-rain-fall 2.5s linear forwards;
+}
+
+@keyframes orange-rain-fall {
+  0% { top: -10vh; }
+  100% { top: 100vh; }
+}
+
 /* ===== 모바일 대응 반응형 스타일 (max-width: 768px 이하) ===== */
 @media (max-width: 768px) {
   h1 {
