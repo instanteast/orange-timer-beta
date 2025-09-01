@@ -270,8 +270,8 @@ body.dark-mode #reading-test input[type="number"] {
   position: sticky;
   bottom: 20px;
   margin: 2rem auto 0;
-  background: white;
-  border: 2px solid #ccc;
+  background: transparent;
+  border: 2px solid transparent;
   border-radius: 12px;
   padding: 1rem 2rem;  /* 좌우 여백 좀 더 줌 */
   font-size: 1.2rem;
@@ -284,28 +284,30 @@ body.dark-mode #reading-test input[type="number"] {
   align-items: center;
   gap: 1rem;          /* 아이템 간 간격 */
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px transparent;
   text-align: center;
   box-sizing: border-box;
 }
 
 body.dark-mode .dday-box-bottom {
-  background: #222;
+  background: transparent;
   color: #fff;
-  border: 2px solid #888;
+  border: 2px solid transparent;
 }
 
 /* 내부 div들(오늘 날짜, 디데이 박스) 스타일 통일 */
 .dday-box-bottom div {
-  background: inherit; /* 부모 배경 상속 */
+  background: #fff; /* 부모 배경 상속 */
   border-radius: 8px;
+  border: 2px solid #555;
   padding: 0.8rem 1.2rem;
   min-width: 0; /* 최소 너비 0으로 설정 */
   flex: 1 1 0; /* flex 아이템으로 설정 */
   height: auto; /* 높이를 자동으로 조정 */
   box-sizing: border-box;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px #555(255, 255, 255, 0.1);
   font-weight: 600;
+  font-size: 1.5rem;
   white-space: pre-line;
   display: flex;
   align-items: center;
@@ -315,7 +317,7 @@ body.dark-mode .dday-box-bottom {
 }
 
 body.dark-mode .dday-box-bottom div {
-  background: inherit; /* 부모 배경 상속 */
+  background: #222; /* 부모 배경 상속 */
   border-radius: 8px;
   padding: 0.8rem 1.2rem;
   min-width: 0; /* 최소 너비 0으로 설정 */
@@ -324,6 +326,7 @@ body.dark-mode .dday-box-bottom div {
   box-sizing: border-box;
   box-shadow: 0 1px 4px rgb(255, 246, 246);
   font-weight: 600;
+  font-size: 1.5rem;
   white-space: pre-line;
   display: flex;
   align-items: center;
@@ -503,3 +506,16 @@ input[type="number"] {
     height: 20px;
   }
 }
+
+/* 버튼 숨김 효과 */
+.hide-ui {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* 커서 숨김 효과 */
+.hide-cursor {
+  cursor: none !important;
+}
+
