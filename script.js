@@ -180,17 +180,15 @@ function updateDates() {
     today.setHours(0,0,0,0);
 
     const diffTime = target - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))- 1;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays;
   }
 
   const ddaymockDate = '2025-09-03';
   const dday2026Date = '2025-11-13';
-  const dday2027Date = '2026-11-19';
 
-  document.getElementById('dday-mock').innerHTML = `<span class="highlight">9모</span><br>[D-${calcDday(ddaymockDate)}]`;
-  document.getElementById('dday-2026').innerHTML = `<span class="highlight">26수능</span><br>[D-${calcDday(dday2026Date)}]`;
-  document.getElementById('dday-2027').innerHTML = `<span class="highlight">27수능</span><br>[D-${calcDday(dday2027Date)}]`;
+  document.getElementById('dday-mock').innerHTML = `<span class="highlight">9모</span><br> [D-${calcDday(ddaymockDate)}]`;
+  document.getElementById('dday-2026').innerHTML = `<span class="highlight">26수능</span><br> [D-${calcDday(dday2026Date)}]`;
 
 }
 
@@ -267,4 +265,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+let uiHideTimeout;
+
+function showUI() {
+  document.querySelectorAll('.back-btn').forEach(btn => btn.classList.remove('hide-ui'));
+  document.querySelector('.fullscreen-btn')?.classList.remove('hide-ui');
+  document.querySelector('.dark-mode-btn')?.classList.remove('hide-ui');
+  document.body.classList.remove('hide-cursor');
+}
+
+function hideUI() {
+  document.querySelectorAll('.back-btn').forEach(btn => btn.classList.add('hide-ui'));
+  document.querySelector('.fullscreen-btn')?.classList.add('hide-ui');
+  document.querySelector('.dark-mode-btn')?.classList.add('hide-ui');
+  document.body.classList.add('hide-cursor');
+}
+
+function resetUIHideTimer() {
+  showUI();
+  clearTimeout(uiHideTimeout);
+  uiHideTimeout = setTimeout(hideUI, 2000); // 2초 후 숨김
+}
+
+document.addEventListener('mousemove', resetUIHideTimer);
+document.addEventListener('mousedown', resetUIHideTimer);
+document.addEventListener('keydown', resetUIHideTimer);
+
+// 최초 진입 시 타이머 시작
+document.addEventListener('DOMContentLoaded', () => {
+  resetUIHideTimer();
+});
+
+
 
