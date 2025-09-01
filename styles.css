@@ -1,4 +1,5 @@
 /* ===== 기본 바디 스타일 ===== */
+
 body {
   margin: 0;
   font-family: 'Nanum Gothic', sans-serif;
@@ -231,6 +232,7 @@ body.dark-mode #reading-test input[type="number"] {
   font-family: 'Arial', sans-serif;
   z-index: 9999;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
 
 /* ===== 공지사항 영역 (제목 + 내용 레이아웃) ===== */
 .notice-header {
@@ -531,5 +533,6 @@ input[type="number"] {
 .hide-cursor {
   cursor: none !important;
 }
+
 
 
