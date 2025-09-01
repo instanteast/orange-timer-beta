@@ -219,6 +219,19 @@ body.dark-mode #reading-test input[type="number"] {
   color: inherit;
 }
 
+#mini-clock {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+
 /* ===== 공지사항 영역 (제목 + 내용 레이아웃) ===== */
 .notice-header {
   display: flex;
@@ -518,4 +531,5 @@ input[type="number"] {
 .hide-cursor {
   cursor: none !important;
 }
+
 
